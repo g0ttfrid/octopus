@@ -4,19 +4,8 @@ import re
 import requests
 import lxml.html
 
-'''
-g0ttfr1d
-v0.2
-add opção de usar uma url
-
-[+] Requirements
-requests
-lxml
-
-[+] Inspired by 
-https://github.com/UnaPibaGeek/ctfr
-https://github.com/PortSwigger/aws-security-checks
-'''
+# g0ttfr1d
+# v0.2
 
 def parse_args():
 	import argparse
