@@ -51,6 +51,7 @@ import os
 import argparse
 import codecs
 
+pip3 install -r requirements.txt
 ```
 
 
