@@ -37,7 +37,7 @@ obs.: baseados nas piores práticas de prog
 # Uso
 octopus.py [-h] -d DOMAIN
 
-# Requerimentos
+# Dependências
 requests
 lxml
 
