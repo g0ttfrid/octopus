@@ -24,6 +24,21 @@
          `--~`   ) )    .-'.'      '.'.  | (
                 (/`    ( (`          ) )  '-;
                  `      '-;         (-'
+
+          ~~> Looking for AWS Access ID and Secret <~~
+
 ```
 
-# octopus
+# Intro
+--
+
+# Uso
+octopus.py [-h] -d DOMAIN
+
+# Requerimentos
+requests
+lxml
+
+# Inspired by
+https://github.com/UnaPibaGeek/ctfr
+https://github.com/PortSwigger/aws-security-checks
