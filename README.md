@@ -32,6 +32,8 @@
 # Intro
 --
 
+obs.: baseados nas piores práticas de prog
+
 # Uso
 octopus.py [-h] -d DOMAIN
 
@@ -42,5 +44,3 @@ lxml
 # Inspired by
 https://github.com/UnaPibaGeek/ctfr
 https://github.com/PortSwigger/aws-security-checks
-
-obs.: baseados nas piores práticas de prog
