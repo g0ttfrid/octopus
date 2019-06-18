@@ -44,8 +44,12 @@ obs.: feito seguindo as piores práticas de prog
 # Dependências
 
 ```shell
-requests
-lxml
+import os
+import argparse
+import codecs
+import os
+import argparse
+import codecs
 
 ```
 
