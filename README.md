@@ -32,7 +32,7 @@
 # Intro
 --
 
-obs.: baseados nas piores práticas de prog
+obs.: feito seguindo as piores práticas de prog
 
 # Uso
 octopus.py [-h] -d DOMAIN
