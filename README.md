@@ -41,19 +41,30 @@
 
 obs.: feito seguindo as piores práticas de prog
 
-# Optional arguments:
-
-  -h, --help            show this help message and exit
-  
-  -d ['example.com'], --domain ['example.com']
-                        
-                        'Specify your domain'
-
 # Dependências
+
+```shell
 requests
 lxml
+
+```
+
 
 # Inspired by
 https://github.com/UnaPibaGeek/ctfr
 
 https://github.com/PortSwigger/aws-security-checks
+
+# Optional arguments:
+
+  ```shell
+  -h, --help            show this help message and exit
+  
+  -d ['example.com'],   --domain ['example.com'] 
+                        
+                        Specify your domain
+                        
+  ```
+  
+  
+
