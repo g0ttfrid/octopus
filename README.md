@@ -71,5 +71,13 @@ https://github.com/PortSwigger/aws-security-checks
                         
   ```
   
+# To Do:
   
+```shell
+Integrate the JSON module.
+Optimize the code.
+Decontaminate the output of information.
+Generate output.
+Integrate with APIs.
+``` 
 
