@@ -1,2 +1,7 @@
 requests
 lxml
+os
+argparse
+codecs
+re
+lxml.html

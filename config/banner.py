@@ -33,7 +33,7 @@ show_me = r'''
     {GREEN}--== Looking for AWS ID and Secret Access ==--{FIM}
                         {GREEN}B4d C0d3{FIM}
     {GREEN}Author: {FIM}g0ttfr1d
-    {GREEN}Contibutor: {FIM}Achilles0x01
+    {GREEN}Contributor: {FIM}Achilles0x01
     {GREEN}github: {FIM}g0ttfr1d
     {GREEN}github: {FIM}iBLISSLabs
     
