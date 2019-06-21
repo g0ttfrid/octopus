@@ -24,7 +24,6 @@
                                             (/`    ( (`          ) )  '-;
                                              `      '-;         (-'
 
-                                                    OCTOPUS
                                 --== Looking for AWS ID and Secret Access ==--
                                                     B4d C0d3
     
@@ -38,9 +37,13 @@
 ```
 
 # Intro
---
+Ferramenta para busca de creds AWS.
+  1. Procura sub-dominíos (https://crt.sh/);
+  2. Conecta nos sub-domínios e procura por chamadas de script no codigo-fonte;
+  3. Procura credenciais AWS nos sripts.
 
-obs.: feito seguindo as piores práticas de prog
+- Seguindo as piores práticas de progamação.
+
 
 # Dependências
 
@@ -61,6 +64,7 @@ https://github.com/UnaPibaGeek/ctfr
 
 https://github.com/PortSwigger/aws-security-checks
 
+
 # Optional arguments:
 
   ```shell
@@ -72,6 +76,7 @@ https://github.com/PortSwigger/aws-security-checks
                         
   ```
   
+  
 # To Do:
   
 ```shell
@@ -80,5 +85,4 @@ Optimize the code.
 Decontaminate the output of information.
 Generate output.
 Integrate with APIs.
-``` 
-
+```
