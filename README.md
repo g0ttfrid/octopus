@@ -35,15 +35,15 @@
 ```
 
 # Intro
-Ferramenta para busca de creds AWS.
-  1. Procura sub-dominíos (https://crt.sh/);
-  2. Conecta nos sub-domínios e procura por chamadas de script no codigo-fonte;
-  3. Procura credenciais AWS nos sripts.
+Simple tool to help you catch aws credentials, when dev falter.
+  1. Enum sub-domains (https://crt.sh/);
+  2. Connects to sub-domains and search for script calls in source code;
+  3. Search for AWS credentials inside of scripts.
 
-- Seguindo as piores práticas de progamação.
+- following the worst programming practices.
 
 
-# Dependências
+# Requirements
 
 ```shell
 import os
@@ -55,12 +55,6 @@ import codecs
 
 pip3 install -r requirements.txt
 ```
-
-
-# Inspired by
-https://github.com/UnaPibaGeek/ctfr
-
-https://github.com/PortSwigger/aws-security-checks
 
 
 # Optional arguments:
@@ -84,3 +78,9 @@ Decontaminate the output of information.
 Generate output.
 Integrate with APIs.
 ```
+
+
+# Inspired by
+https://github.com/UnaPibaGeek/ctfr
+
+https://github.com/PortSwigger/aws-security-checks
