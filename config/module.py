@@ -71,7 +71,7 @@ def search_key(urls):
 
     for url in urls:
 
-        r = requests.get(url)
+        r = requests.get(url, timeout=(3,5))
         r = str(r.content)
         r = r.split("'")
 
