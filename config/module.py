@@ -62,8 +62,6 @@ def parse_site(subdomains):
 def search_key(urls):
     print('\n{GREEN}[+]{FIM} Parsing sites and searching creds'.format(**colors))
 
-    if urls == []:
-        print('Empty list') 
     words = ['S3_KEY', 'S3_SECRET', 'AWS_ACCESS_KEY_ID',
             'AWS_SECRET_ACCESS_KEY', 'AccessKeyId', 'SecretAccessKey',
             'aws_access_key_id', 'aws_secret_access_key', 'aws_session_token'
