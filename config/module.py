@@ -28,7 +28,7 @@ def sub_domains(target):
 
     subdomains = sorted(set(subdomains))
     for subdomain in subdomains:
-        print(" + {s}".format(s=subdomain))
+        print("  + {s}".format(s=subdomain))
 
     if subdomains == []:
         print('{YELLOW}[!]{FIM} Subdomains not found!'.format(**colors))
