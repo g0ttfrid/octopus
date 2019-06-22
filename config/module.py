@@ -54,9 +54,9 @@ def parse_site(subdomains):
                         links.append('https://{s}{l}'.format(s=sub,l=link))
                     else:
                         links.append('https://{s}/{l}'.format(s=sub,l=link))
-
             except:
                 pass
+
     return links
 
 def search_key(urls):
