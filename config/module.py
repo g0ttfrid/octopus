@@ -41,21 +41,20 @@ def parse_site(subdomains):
     for sub in subdomains:
         if '*' not in sub:
             try:
-                r = requests.get('https://{s}'.format(s=sub))
+                r = requests.get('https://{s}'.format(s=sub), timeout=(3,5))
 
                 dom = lxml.html.fromstring(r.content)
                 for link in dom.xpath('//script/@src'):
 
                     if link.startswith('https://'):
                         links.append(link)
-                    elif link.startswith('www'):
-                        links.append('https://{l}'.format(l=link))
-                    elif link.startswith('//www'):
+                    elif link.startswith('//'):
                         links.append('https:{l}'.format(l=link))
                     elif link.startswith('/'):
                         links.append('https://{s}{l}'.format(s=sub,l=link))
                     else:
                         links.append('https://{s}/{l}'.format(s=sub,l=link))
+
             except:
                 pass
     return links
