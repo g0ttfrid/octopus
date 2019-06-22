@@ -37,6 +37,7 @@ def sub_domains(target):
     return subdomains
 
 def parse_site(subdomains):
+    print('\n{GREEN}[+]{FIM} Parsing sites'.format(**colors))
     links = []
     for sub in subdomains:
         if '*' not in sub:
@@ -58,7 +59,7 @@ def parse_site(subdomains):
     return links
 
 def search_key(urls):
-    print('\n{GREEN}[+]{FIM} Parsing sites and searching creds'.format(**colors))
+    print('\n{GREEN}[+]{FIM} Searching creds'.format(**colors))
 
     words = ['S3_KEY', 'S3_SECRET', 'AWS_ACCESS_KEY_ID',
             'AWS_SECRET_ACCESS_KEY', 'AccessKeyId', 'SecretAccessKey',
