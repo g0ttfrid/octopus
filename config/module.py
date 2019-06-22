@@ -45,7 +45,6 @@ def parse_site(subdomains):
 
                 dom = lxml.html.fromstring(r.content)
                 for link in dom.xpath('//script/@src'):
-
                     if link.startswith('https://'):
                         links.append(link)
                     elif link.startswith('//'):
@@ -56,7 +55,6 @@ def parse_site(subdomains):
                         links.append('https://{s}/{l}'.format(s=sub,l=link))
             except:
                 pass
-
     return links
 
 def search_key(urls):
@@ -87,4 +85,3 @@ def search_key(urls):
                     elif 'secret' in word.lower():
                         if len(find) == len_secret and ' ' not in find:
                             print('    > Access Secret: {GREEN}{f}{FIM}'.format(**colors, f=find))
-            
