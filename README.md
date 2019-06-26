@@ -46,9 +46,12 @@ Simple tool to help you catch aws credentials, when dev falter.
 # Requirements
 
 ```shell
-import os
-import argparse
-import codecs
+requests
+lxml
+os
+argparse
+codecs
+re
 
 pip3 install -r requirements.txt
 ```
