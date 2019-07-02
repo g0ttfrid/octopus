@@ -28,16 +28,18 @@ class Octopus2(object):
     def start(self):
         print(self.description)
         
-        if self.args.domain == None:
+        if self.args.url != None:
             url = str(self.args.url)
             print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=url))
             search_key(parse_site(url))
-        else:
+        elif self.args.domain != None:
             domain = clear_url(self.args.domain)    
             print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=domain))
             sub_list = []
             sub_list = sub_domains(domain)
             search_key(parse_site(sub_list))
+        else:
+            print("\n{RED}[!] NO Target!!!{FIM}\n".format(**colors))
 
 try:
     Octopus2().start()
