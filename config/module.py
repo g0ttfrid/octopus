@@ -39,23 +39,40 @@ def sub_domains(target):
 def parse_site(subdomains):
     print('\n{GREEN}[+]{FIM} Parsing sites'.format(**colors))
     links = []
-    for sub in subdomains:
-        if '*' not in sub:
-            try:
-                r = requests.get('https://{s}'.format(s=sub), timeout=(3,5))
+    if subdomains is list:
+        for sub in subdomains:
+            if '*' not in sub:
+                try:
+                    r = requests.get('https://{s}'.format(s=sub), timeout=(3,5))
 
-                dom = lxml.html.fromstring(r.content)
-                for link in dom.xpath('//script/@src'):
-                    if link.startswith('https://'):
-                        links.append(link)
-                    elif link.startswith('//'):
-                        links.append('https:{l}'.format(l=link))
-                    elif link.startswith('/'):
-                        links.append('https://{s}{l}'.format(s=sub,l=link))
-                    else:
-                        links.append('https://{s}/{l}'.format(s=sub,l=link))
-            except:
-                pass
+                    dom = lxml.html.fromstring(r.content)
+                    for link in dom.xpath('//script/@src'):
+                        if link.startswith('https://'):
+                            links.append(link)
+                        elif link.startswith('//'):
+                            links.append('https:{l}'.format(l=link))
+                        elif link.startswith('/'):
+                            links.append('https://{s}{l}'.format(s=sub,l=link))
+                        else:
+                            links.append('https://{s}/{l}'.format(s=sub,l=link))
+                except:
+                    pass
+    else:
+        try:
+            r = requests.get('{s}'.format(s=subdomains), timeout=(3,5))
+
+            dom = lxml.html.fromstring(r.content)
+            for link in dom.xpath('//script/@src'):
+                if link.startswith('https://'):
+                    links.append(link)
+                elif link.startswith('//'):
+                    links.append('https:{l}'.format(l=link))
+                elif link.startswith('/'):
+                    links.append('{s}{l}'.format(s=subdomains,l=link))
+                else:
+                    links.append('{s}/{l}'.format(s=subdomains,l=link))
+        except:
+            pass
     return links
 
 def search_key(urls):
