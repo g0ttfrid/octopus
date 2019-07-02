@@ -21,17 +21,23 @@ class Octopus2(object):
     def __init__(self):
         self.description = bn.banner()
         parser = argparse.ArgumentParser(prog=self.description, usage='%(prog)s [options]')
-        parser.add_argument('-d', '--domain', nargs='?', metavar='{BLUE}\'example.com\'{FIM}'.format(**colors), type=str, required=True, help='{YELLOW}\'Specify your domain\'{FIM}'.format(**colors))
+        parser.add_argument('-d', '--domain', nargs='?', metavar='{BLUE}\'example.com\'{FIM}'.format(**colors), type=str, help='{YELLOW}\'Specify your domain\'{FIM}'.format(**colors))
+        parser.add_argument('-u', '--url', nargs='?', metavar='{BLUE}\'https://www.example.com\'{FIM}'.format(**colors), type=str, help='{YELLOW}\'Specify your URL\'{FIM}'.format(**colors))
         self.args = parser.parse_args()
 
     def start(self):
         print(self.description)
-        target = clear_url(self.args.domain)
-        print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=target))
-
-        sub_list = []
-        sub_list = sub_domains(target)
-        search_key(parse_site(sub_list))
+        
+        if self.args.domain == None:
+            url = str(self.args.url)
+            print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=url))
+            search_key(parse_site(url))
+        else:
+            domain = clear_url(self.args.domain)    
+            print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=domain))
+            sub_list = []
+            sub_list = sub_domains(domain)
+            search_key(parse_site(sub_list))
 
 try:
     Octopus2().start()
