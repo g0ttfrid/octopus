@@ -1,14 +1,8 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import re
 import requests
 import lxml.html
-import argparse
 from config.banner import colors
-
-# g0ttfr1d
-# Edit by Achilles0x0
-# v1.0
 
 def clear_url(target):
     return re.sub('.*www\.','',target,1).split('/')[0].strip()
@@ -39,11 +33,11 @@ def sub_domains(target):
 def parse_site(subdomains):
     print('\n{GREEN}[+]{FIM} Parsing sites'.format(**colors))
     links = []
-    if subdomains is list:
+    if type(subdomains) is list:
         for sub in subdomains:
             if '*' not in sub:
                 try:
-                    r = requests.get('https://{s}'.format(s=sub), timeout=(3,5))
+                    r = requests.get('https://{s}'.format(s=sub), timeout=(5,5))
 
                     dom = lxml.html.fromstring(r.content)
                     for link in dom.xpath('//script/@src'):
@@ -59,7 +53,7 @@ def parse_site(subdomains):
                     pass
     else:
         try:
-            r = requests.get('{s}'.format(s=subdomains), timeout=(3,5))
+            r = requests.get('{s}'.format(s=subdomains), timeout=(5,5))
 
             dom = lxml.html.fromstring(r.content)
             for link in dom.xpath('//script/@src'):
@@ -85,21 +79,22 @@ def search_key(urls):
 
     for url in urls:
 
-        r = requests.get(url, timeout=(3,5))
+        r = requests.get(url, timeout=(5,5))
         r = str(r.content)
         r = r.split("'")
 
         len_id = 20
         len_secret = 40
 
-        print('  + URL: {u}'.format(u=url))
         for word in words:
             if word in r:
                 print('  - Possible {RED}{w}{FIM}'.format(**colors, w=word))
                 for find in r:
                     if 'id' in word.lower():
                         if len(find) == len_id and find.isupper() and find.isalnum():
-                            print('    > Access ID: {GREEN}{f}{FIM}'.format(**colors, f=find))
+                            print('{GREEN}[+]{FIM} URL: {u}'.format(**colors, u=url))
+                            print('    {BOLD}{ORANGE}> Access ID:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
                     elif 'secret' in word.lower():
                         if len(find) == len_secret and ' ' not in find:
-                            print('    > Access Secret: {GREEN}{f}{FIM}'.format(**colors, f=find))
+                            print('{GREEN}[+]{FIM} URL: {u}'.format(**colors, u=url))
+                            print('    {BOLD}{ORANGE}> Access Secret:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
