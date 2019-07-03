@@ -39,12 +39,11 @@ def sub_domains(target):
 def parse_site(subdomains):
     print('\n{GREEN}[+]{FIM} Parsing sites'.format(**colors))
     links = []
-    if subdomains is list:
+    if type(subdomains) is list:
         for sub in subdomains:
             if '*' not in sub:
                 try:
                     r = requests.get('https://{s}'.format(s=sub), timeout=(3,5))
-
                     dom = lxml.html.fromstring(r.content)
                     for link in dom.xpath('//script/@src'):
                         if link.startswith('https://'):
@@ -60,7 +59,6 @@ def parse_site(subdomains):
     else:
         try:
             r = requests.get('{s}'.format(s=subdomains), timeout=(3,5))
-
             dom = lxml.html.fromstring(r.content)
             for link in dom.xpath('//script/@src'):
                 if link.startswith('https://'):
