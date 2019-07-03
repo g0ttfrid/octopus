@@ -14,11 +14,8 @@ class Octopus(object):
     def __init__(self):
         self.description = banana.banner()
         parser = argparse.ArgumentParser(description='Simple tool to help you catch aws credentials, when dev falter - B4d C0d3', prog=self.description, usage='%(prog)s [ I want to play a game ] ')
-
         parser.add_argument('-d', '--domain', nargs='?', metavar='{BLUE}example.com{FIM}'.format(**colors), type=str, help='{CYAN}{BOLD}Specify your domain{FIM}'.format(**colors))
-
         parser.add_argument('-u', '--url', nargs='?', metavar='{BLUE}https://www.example.com{FIM}'.format(**colors), type=str, help='{CYAN}{BOLD}Specify a URL{FIM}'.format(**colors))
-
         self.args = parser.parse_args()
 
     def start(self):

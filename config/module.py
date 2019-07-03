@@ -92,9 +92,9 @@ def search_key(urls):
                 for find in r:
                     if 'id' in word.lower():
                         if len(find) == len_id and find.isupper() and find.isalnum():
-                            print('{GREEN}[+]{FIM} URL: {u}'.format(**colors, u=url))
+                            print('    🌎  {u}'.format(**colors, u=url))
                             print('    {BOLD}{ORANGE}> Access ID:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
                     elif 'secret' in word.lower():
                         if len(find) == len_secret and ' ' not in find:
-                            print('{GREEN}[+]{FIM} URL: {u}'.format(**colors, u=url))
+                            print('    🌎  {u}'.format(**colors, u=url))
                             print('    {BOLD}{ORANGE}> Access Secret:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
