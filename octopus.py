@@ -33,7 +33,7 @@ class Octopus(object):
             sub_list = sub_domains(target)
             search_key(parse_site(sub_list))
         else:
-            print('{RED}{BOLD}[!]Please, Insert a target{FIM}\n\nUse -h or --help'.format(**colors))
+            print('{RED}{BOLD}[!]Please, insert a target{FIM}\n\nUse -h or --help'.format(**colors))
 
 try:
     Octopus().start()
