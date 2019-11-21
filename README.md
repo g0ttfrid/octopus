@@ -61,10 +61,10 @@ pip3 install -r requirements.txt
 
   ```shell
   -h, --help            show this help message and exit
-
-  -d ['example.com'],   --domain ['example.com']
-
+  -d [example.com], --domain [example.com]
                         Specify your domain
+  -u [https://www.example.com], --url [https://www.example.com]
+                        Specify a URL
 
   ```
 
