@@ -4,9 +4,6 @@ import requests
 import lxml.html
 from config.banner import colors
 
-def clear_url(target):
-    return re.sub('.*www\.','',target,1).split('/')[0].strip()
-
 def sub_domains(target):
     print('{GREEN}[+]{FIM} Subdomains'.format(**colors))
     subdomains = []
@@ -14,10 +11,10 @@ def sub_domains(target):
     r = requests.get("https://crt.sh/?q=%.{t}&output=json".format(t=target))
 
     if r.status_code != 200:
-        print('{RED}[!]{FIM} Information not available!'.format(**colors))
+        print('{RED}[!]{FIM} Information not available, check the domain informed!'.format(**colors))
         exit(1)
 
-    for (key, value) in enumerate(r.json()):
+    for key,value in enumerate(r.json()):
         subdomains.append(value['name_value'])
 
     subdomains = sorted(set(subdomains))
@@ -25,21 +22,21 @@ def sub_domains(target):
         print("  + {s}".format(s=subdomain))
 
     if subdomains == []:
-        print('{YELLOW}[!]{FIM} Subdomains not found!'.format(**colors))
+        print('{YELLOW}[!]{FIM} Subdomains not found, check the domain informed!'.format(**colors))
         exit(1)
 
     return subdomains
 
 def parse_site(subdomains):
-    print('\n{GREEN}[+]{FIM} Parsing sites'.format(**colors))
+    print('\n{GREEN}[+]{FIM} Scraping...'.format(**colors))
     links = []
     if type(subdomains) is list:
         for sub in subdomains:
             if '*' not in sub:
                 try:
                     r = requests.get('https://{s}'.format(s=sub), timeout=(5,5))
-
                     dom = lxml.html.fromstring(r.content)
+                    links.append('https://{s}'.format(s=sub))
                     for link in dom.xpath('//script/@src'):
                         if link.startswith('https://'):
                             links.append(link)
@@ -54,8 +51,8 @@ def parse_site(subdomains):
     else:
         try:
             r = requests.get('{s}'.format(s=subdomains), timeout=(5,5))
-
             dom = lxml.html.fromstring(r.content)
+            links.append('{s}'.format(s=subdomains))
             for link in dom.xpath('//script/@src'):
                 if link.startswith('https://'):
                     links.append(link)
@@ -70,12 +67,14 @@ def parse_site(subdomains):
     return links
 
 def search_key(urls):
-    print('\n{GREEN}[+]{FIM} Searching creds'.format(**colors))
+    print('\n{GREEN}[+]{FIM} Searching Credentials'.format(**colors))
 
-    words = ['S3_KEY', 'S3_SECRET', 'AWS_ACCESS_KEY_ID',
-            'AWS_SECRET_ACCESS_KEY', 'AccessKeyId', 'SecretAccessKey',
-            'aws_access_key_id', 'aws_secret_access_key', 'aws_session_token'
-        ]
+    words = {'S3_KEY':'', 'S3_SECRET':'', 'AWS_ACCESS_KEY_ID':'',
+            'AWS_SECRET_ACCESS_KEY':'', 'AccessKeyId':'', 'SecretAccessKey':'',
+            'aws_access_key_id':'', 'aws_secret_access_key':'', 'aws_session_token':''
+            }
+
+    url_list = []
 
     for url in urls:
 
@@ -86,15 +85,17 @@ def search_key(urls):
         len_id = 20
         len_secret = 40
 
-        for word in words:
+        for word in words.keys():
             if word in r:
-                print('  - Possible {RED}{w}{FIM}'.format(**colors, w=word))
+                print('  + Possible {RED}{w}{FIM} in {YELLOW}{u}{FIM}'.format(**colors, w=word, u=url))
+                url_list.append(url)
                 for find in r:
                     if 'id' in word.lower():
                         if len(find) == len_id and find.isupper() and find.isalnum():
-                            print('    🌎  {u}'.format(**colors, u=url))
-                            print('    {BOLD}{ORANGE}> Access ID:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
+                            print('{BOLD}{ORANGE}   - {w}{FIM} > {REVR}{f}{FIM}'.format(**colors, w=word, f=find))
+                            words[word] = find
                     elif 'secret' in word.lower():
                         if len(find) == len_secret and ' ' not in find:
-                            print('    🌎  {u}'.format(**colors, u=url))
-                            print('    {BOLD}{ORANGE}> Access Secret:{FIM} {REVR}{f}{FIM}'.format(**colors, f=find))
+                            print('{BOLD}{ORANGE}   - {w}{FIM} > {REVR}{f}{FIM}'.format(**colors, w=word, f=find))
+                            words[word] = find
+    return words, list(set(url_list))
