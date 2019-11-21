@@ -5,6 +5,8 @@ import codecs
 from config import banner as banana
 from config.banner import colors
 from config.module import *
+from config.bucket import *
+
 
 os.system('cls' if os.name == 'nt' else 'clear')
 codecs.register(lambda name: codecs.lookup('utf-8') if name == 'cp65001' else None)
@@ -22,18 +24,21 @@ class Octopus(object):
         print(self.description)
 
         if self.args.url != None:
-            url = str(self.args.url)
+            url = self.args.url
             print('\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n'.format(**colors, d=url))
-            search_key(parse_site(url))
+            keys, urls = search_key(parse_site(url))
+            bkt = buckets3(url)
 
         elif self.args.domain != None:
-            target = clear_url(self.args.domain)
+            target = self.args.domain
             print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=target))
             sub_list = []
             sub_list = sub_domains(target)
-            search_key(parse_site(sub_list))
+            keys, urls = search_key(parse_site(sub_list))
+            bkt = buckets3(target)
+            
         else:
-            print('{RED}{BOLD}[!]Please, insert a target{FIM}\n\nUse -h or --help'.format(**colors))
+            print('{RED}{BOLD}[!]Please, choice a target or input a dork to search one{FIM}\n\nUse -h or --help'.format(**colors))
 
 try:
     Octopus().start()
