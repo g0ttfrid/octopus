@@ -56,8 +56,7 @@ re
 pip3 install -r requirements.txt
 ```
 
-
-# Optional arguments:
+# Optional arguments
 
   ```shell
   -h, --help            show this help message and exit
@@ -67,7 +66,6 @@ pip3 install -r requirements.txt
                         Specify a URL
 
   ```
-
 
 # To Do:
 
@@ -79,8 +77,7 @@ Generate output.
 Integrate with APIs.
 ```
 
-
-# Inspired by
+# References
 https://github.com/UnaPibaGeek/ctfr
 
 https://github.com/PortSwigger/aws-security-checks
