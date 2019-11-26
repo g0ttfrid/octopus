@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import requests
@@ -22,14 +23,9 @@ def buckets3(words):
     for word in combinations(words):
         try:
             r = requests.get('https://{w}.s3.amazonaws.com'.format(w=word), timeout=(5,5))
-            if r.status_code != 404:
+            if ((r.status_code != 404) and (r.status_code != 400)):
                 print('  + Possible {RED}Bucket S3{FIM} {YELLOW}{w}.s3.amazonaws.com{FIM}'.format(**colors, w=word))
                 bkts.append(word)
-            else:
-                r = requests.get('https://s3.amazonaws.com/{w}/'.format(w=word), timeout=(5,5))
-                if r.status_code != 404:
-                    print('  + Possible {RED}Bucket S3{FIM} {YELLOW}s3.amazonaws.com/{w}/{FIM}'.format(**colors, w=word))
-                    bkts.append(word)
         except:
             pass
     return bkts
