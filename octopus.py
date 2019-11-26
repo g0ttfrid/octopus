@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- condig: utf-8 -*-
 import os
 import argparse
@@ -36,7 +37,7 @@ class Octopus(object):
             sub_list = sub_domains(target)
             keys, urls = search_key(parse_site(sub_list))
             bkt = buckets3(target)
-            
+
         else:
             print('{RED}{BOLD}[!]Please, choice a target or input a dork to search one{FIM}\n\nUse -h or --help'.format(**colors))
 
