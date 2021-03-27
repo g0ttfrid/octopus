@@ -67,16 +67,6 @@ pip3 install -r requirements.txt
 
   ```
 
-# To Do
-
-```shell
-Integrate the JSON module.
-Optimize the code.
-Decontaminate the output of information.
-Generate output.
-Integrate with APIs.
-```
-
 # References
 https://github.com/UnaPibaGeek/ctfr
 
