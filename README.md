@@ -68,5 +68,5 @@ pip3 install -r requirements.txt
   ```
 
 # References
-https://github.com/UnaPibaGeek/ctfr\
+https://github.com/UnaPibaGeek/ctfr \
 https://github.com/PortSwigger/aws-security-checks
