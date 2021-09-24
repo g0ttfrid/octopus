@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- condig: utf-8 -*-
 import os
 import argparse
 import codecs
