@@ -6,7 +6,6 @@ import codecs
 from config import banner as banana
 from config.banner import colors
 from config.module import *
-from config.bucket import *
 
 
 os.system('cls' if os.name == 'nt' else 'clear')
