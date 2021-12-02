@@ -28,7 +28,6 @@ class Octopus(object):
             url = self.args.url
             print('\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n'.format(**colors, d=url))
             keys, urls = search_key(parse_site(url))
-            bkt = buckets3(url)
 
         elif self.args.domain != None:
             target = self.args.domain
@@ -36,7 +35,6 @@ class Octopus(object):
             sub_list = []
             sub_list = sub_domains(target)
             keys, urls = search_key(parse_site(sub_list))
-            bkt = buckets3(target)
 
         else:
             print('{RED}{BOLD}[!]Please, choice a target or input a dork to search one{FIM}\n\nUse -h or --help'.format(**colors))
