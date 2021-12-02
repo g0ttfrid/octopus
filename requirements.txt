@@ -1,6 +1,5 @@
-re
+os
 requests
 lxml.html
-os
 argparse
 codecs
