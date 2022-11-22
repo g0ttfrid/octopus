@@ -1,4 +1,3 @@
-os
 requests
 lxml.html
 argparse
