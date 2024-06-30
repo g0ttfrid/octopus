@@ -42,10 +42,10 @@ Simple tool to help you catch hardcode API Keys.
 - following the worst programming practices.
 
 
->Recommended to use specific proxy for crawling.
->subdomains.py accesses crt.sh and certspotter.
->archiveweb.py accesses google.com.br and web.archive.org.
->getlinks.py and search.py access target urls.
+>Recommended to use specific proxy for crawling.\
+>subdomains.py accesses crt.sh and certspotter.\
+>archiveweb.py accesses google.com.br and web.archive.org.\
+>getlinks.py and search.py access target urls.\
 
 >Add more regex in search.py to get other types of keys.
 
