@@ -22,50 +22,46 @@
                              `--~`   ) )    .-'.'      '.'.  | (
                                     (/`    ( (`          ) )  '-;
                                      `      '-;         (-'
-                         --== Looking for AWS ID and Secret Access ==--
-                                            B4d C0d3
+                              --== Looking for hardcoded API Keys ==--
+                                              B4d C0d3
 
-    Author: g0ttfr1d
+    Author: g0ttfrid
     Contributor : Achilles0x01
-    github: g0ttfr1d
-    github: iBLISSLabs
 
     IBLISS Labs
 
 ```
 
 # Intro
-Simple tool to help you catch aws credentials, when dev falter.
-  1. Enum sub-domains (https://crt.sh/);
-  2. Connects to sub-domains and search for script calls in source code;
-  3. Search for AWS credentials inside of scripts.
+Simple tool to help you catch hardcode API Keys.
+  1. Enum sub-domains (crt.sh and certspotter);
+  2. Fetch all the URLs that Google and Wayback Machine knows of the target (Add new subdomains too);
+  3. Connects to sub-domains and search for URLs in code (concatenating with the urls from the previous phase);
+  4. Fetch some types of API Keys in source code using regex.
 
 - following the worst programming practices.
 
 
-# Requirements
+>Recommended to use specific proxy for crawling.
+>subdomains.py accesses crt.sh and certspotter.
+>archiveweb.py accesses google.com.br and web.archive.org.
+>getlinks.py and search.py access target urls.
 
-```shell
-os
-requests
-lxml.html
-argparse
-codecs
+>Add more regex in search.py to get other types of keys.
 
-pip3 install -r requirements.txt
-```
-
-# Optional arguments
+# Arguments
 
   ```shell
   -h, --help            show this help message and exit
   -d [example.com], --domain [example.com]
                         Specify your domain
-  -u [https://www.example.com], --url [https://www.example.com]
-                        Specify a URL
-
+  -p [username:password@myproxy.com:1337], --proxy [username:password@myproxy.com:1337]
+                        Specify your proxy. Recommended to use specific proxies for    
+                        crawling
   ```
 
 # References
-https://github.com/UnaPibaGeek/ctfr \
-https://github.com/PortSwigger/aws-security-checks
+[ctfr](https://github.com/UnaPibaGeek/ctfr)\
+[aws-security-checks](https://github.com/PortSwigger/aws-security-checks)\
+[archiveweb](https://github.com/g0ttfrid/archiveweb)\
+[pygmy](https://github.com/g0ttfrid/pygmy)

@@ -32,7 +32,7 @@ show_me = r'''
         , _.-'.'\ \        / /    ( (     / /
          `--~`   ) )    .-'.'      '.'.  | (
                 (/`    ( (`          ) )  '-;
-                 `      '-;         (-'{GREEN}{ITALIC}V1.2{FIM}{FIM}
+                 `      '-;         (-'{GREEN}{ITALIC}V2.0{FIM}{FIM}
 
 {ORANGE}{BOLD}                       __
           ____   _____/  |_  ____ ______  __ __  ______
@@ -40,10 +40,12 @@ show_me = r'''
         (  <_> )  \___|  | (  <_> )  |_> >  |  /\___ \
          \____/ \___  >__|  \____/|   __/|____//____  >
                     \/            |__|              \/{FIM}
-    {GREEN}--== Looking for AWS ID and Secret Access ==--{FIM}
-                       {RED}B4d C0d3{FIM}
-    {RED}{ITALIC}[Author]+[GITHUB]: {FIM}g0ttfr1d - {RED}{ITALIC}[Contributor]: {FIM}Achilles0x01
-    {BLUE}{ITALIC}[GITHUB]: {FIM}iBLISSLabs
+            {GREEN}--== Looking for hardcoded API Keys ==--{FIM}
+                            {RED}B4d C0d3{FIM}
+
+{RED}{ITALIC}[Author]: {FIM}g0ttfrid
+{RED}{ITALIC}[Contributor]: {FIM}Achilles0x01
+{BLUE}{ITALIC}[GITHUB]: {FIM}iBLISSLabs
 
 '''.format(**colors)
 
