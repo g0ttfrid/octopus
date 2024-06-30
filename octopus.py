@@ -7,10 +7,11 @@ from modules.banner import *
 from modules.subdomains import subdomains
 from modules.archiveweb import archiveweb
 from modules.getlinks import getlinks
-from modules.search import search
+from modules.search import search,logger
 
 os.system('cls' if os.name == 'nt' else 'clear')
 codecs.register(lambda name: codecs.lookup('utf-8') if name == 'cp65001' else None)
+
 
 
 class Octopus(object):
@@ -33,7 +34,7 @@ class Octopus(object):
             subs.update(subdomains(target))
             urls.update(archiveweb(target))
             urls.update(getlinks(subs, urls))
-            search(urls)
+            logger(search(urls))
 
         else:
             print('{RED}{BOLD}[!] Please, pass a domain. Use -h or --help{FIM}'.format(**colors))
