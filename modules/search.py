@@ -37,7 +37,7 @@ def search(urls, proxy=None):
         ua = UserAgent()
         headers = {'User-Agent': f'{ua.random}'}
         try:
-            r = get(url.rstrip(), headers=headers, proxies=proxies, timeout=8, verify=False, allow_redirects=False)
+            r = get(url.rstrip(), headers=headers, proxies=proxies, timeout=8, verify=False)
             for k,v in regex.items():
                 x = re.search(v, r.text)
                 if x:
