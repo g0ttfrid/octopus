@@ -3,6 +3,7 @@ import re
 import urllib3
 import time
 from requests import get
+from fake_useragent import UserAgent
 
 urllib3.disable_warnings()
 
@@ -23,13 +24,20 @@ def parse_args():
     parser.add_argument('-f', '--file', type=open, required=True)
     return parser.parse_args()
 
-def search(urls):
+def search(urls, proxy=None):
     print("[+] Searching API Keys")
-    data = set()
 
+    if proxy:
+        proxies = {'http': f'http://{proxy}', 'https': f'http://{proxy}'}
+    else:
+        proxies = None
+
+    data = set()
     for url in urls:
+        ua = UserAgent()
+        headers = {'User-Agent': f'{ua.random}'}
         try:
-            r = get(url.rstrip(), timeout=(3), verify=False)
+            r = get(url.rstrip(), headers=headers, proxies=proxies, timeout=8, verify=False, allow_redirects=False)
             for k,v in regex.items():
                 x = re.search(v, r.text)
                 if x:
