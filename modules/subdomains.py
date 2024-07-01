@@ -20,17 +20,17 @@ def subdomains(domain, proxy=None):
     try:
         r = requests.get(f'https://api.certspotter.com/v1/issuances?domain={domain}&include_subdomains=true&expand=dns_names&expand=issuer&expand=cert', headers=headers, proxies=proxies, timeout=8, verify=False, allow_redirects=False)
     except Exception as err:
-        print(f'[!] certspotter.com: {err}')
+        print(f'[!] certspotter: {err}')
     
     try:
         for (key,value) in enumerate(r.json()):
             for name in value['dns_names']:
                 if '*' not in name and domain in name: data.add(name)
     except Exception as err:
-        print(f'[!] {err}')
+        print(f'[!] certspotter: {err}')
 
     try:
-        r = requests.get(f'https://crt.sh/?q=%.{domain}&output=json', headers=headers, proxies=proxies, timeout=8, verify=False, allow_redirects=False)
+        r = requests.get(f'https://crt.sh/?q=%.{domain}&output=json', headers=headers, proxies=proxies, timeout=15, verify=False, allow_redirects=False)
     except Exception as err:
         print(f'[!] crt.sh: {err}')
 
@@ -42,7 +42,7 @@ def subdomains(domain, proxy=None):
             else:
                 if '*' not in value['name_value']: data.add(value['name_value'])
     except Exception as err:
-        print(f'[!] {err}')
+        print(f'[!] crt.sh: {err}')
 
     return sorted(data)
 
