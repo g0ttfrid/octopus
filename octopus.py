@@ -20,13 +20,13 @@ class Octopus(object):
         self.description = banner()
         parser = argparse.ArgumentParser(description='Simple tool to help you catch hardcode API Keys - B4d C0d3', prog=self.description, usage='%(prog)s')
         parser.add_argument('-d', '--domain', nargs='?', metavar='{BLUE}example.com{FIM}'.format(**colors), type=str, help='{CYAN}{BOLD}Specify your domain{FIM}'.format(**colors))
-        parser.add_argument('-p', '--proxy', nargs='?', metavar='{BLUE}username:password@myproxy.om:1337{FIM}'.format(**colors), type=str, help='{CYAN}{BOLD}Specify your proxy. Recommended to use specific proxies for crawling{FIM}'.format(**colors))
+        parser.add_argument('-p', '--proxy', nargs='?', metavar='{BLUE}username:password@myproxy.com:1337{FIM}'.format(**colors), type=str, help='{CYAN}{BOLD}Specify your proxy. Recommended to use specific proxies for crawling{FIM}'.format(**colors))
         self.args = parser.parse_args()
 
     def start(self):
         print(self.description)
 
-        if self.args.domain != None:
+        if self.args.proxy == None and self.args.domain:
             target = self.args.domain
             print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=target))
             subs = set()
@@ -35,6 +35,17 @@ class Octopus(object):
             urls.update(archiveweb(target))
             urls.update(getlinks(subs, urls))
             logger(search(urls))
+
+        elif self.args.proxy != None and self.args.domain:
+            target = self.args.domain
+            proxy = self.args.proxy
+            print("\n{YELLOW}[+]{FIM} Target: {YELLOW}{d}{FIM}\n".format(**colors, d=target))
+            subs = set()
+            urls = set()
+            subs.update(subdomains(target, proxy))
+            urls.update(archiveweb(target, proxy))
+            urls.update(getlinks(subs, urls, proxy))
+            logger(search(urls, proxy))
 
         else:
             print('{RED}{BOLD}[!] Please, pass a domain. Use -h or --help{FIM}'.format(**colors))
