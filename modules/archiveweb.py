@@ -53,10 +53,13 @@ def wayback(target, proxy=None):
     else:
         proxies = None
 
+    ua = UserAgent()
+    headers = {'User-Agent': f'{ua.random}'}
+
     data = set()
     
     try:
-        r = requests.get(f'http://web.archive.org/cdx/search/cdx?url={target}/*&output=json&collapse=urlkey', proxies=proxies, timeout=8, verify=False, allow_redirects=False)
+        r = requests.get(f'http://web.archive.org/cdx/search/cdx?url={target}/*&output=json&collapse=urlkey', headers=headers, proxies=proxies, timeout=8, verify=False, allow_redirects=False)
         for value in r.json():
             data.add(unquote(value[2]))
     
